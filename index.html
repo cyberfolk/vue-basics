@@ -17,7 +17,7 @@
     <body>
         <div id="app">
             <header>
-                <div class="container">
+                <div class="container pt-3">
                     <h1>TODO List</h1>
                 </div>
                 <!-- /.container -->
@@ -26,8 +26,8 @@
             <main>
                 <div class="container">
 
-                    <div class="add_task">
-                        <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()">
+                    <div class="add_task my-3">
+                        <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()" placeholder="Aggiungi nuova Task" class="ps-2">
                         <button @click="addTask()">Add</button>
                         <div class="alert alert-danger" role="alert" v-if="error">
                             <strong>{{error}}</strong>
@@ -38,12 +38,14 @@
                     <div class="tasks">
                         <ul v-if="tasks.length > 0">
                             <li v-for="(task, index) in tasks" :class="{completed : task.done}">
-                                <button @click="completeTask(index)">x</button>
-                                <span @click="toggleDoneTask(index)">{{task.text}}</span>
+                                <button @click="completeTask(index)" class="me-2 bg-body border-0">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <span @click="toggleDoneTask(index)" role="button">{{task.text}}</span>
                             </li>
                         </ul>
 
-                        <div class="alert alert-success " role="alert" v-else>
+                        <div class=" alert alert-success " role=" alert" v-else>
                             <strong>Bravo hai completato le robe</strong>
                         </div>
                     </div>
