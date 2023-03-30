@@ -39,7 +39,7 @@
                         <ul v-if="tasks.length > 0">
                             <li v-for="(task, index) in tasks" :class="{completed : task.done}">
                                 <button @click="completeTask(index)">x</button>
-                                {{task.text}}
+                                <span @click="toggleDoneTask(index)">{{task.text}}</span>
                             </li>
                         </ul>
 

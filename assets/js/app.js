@@ -42,6 +42,13 @@ createApp({
         completeTask(i) {
             this.completedTask.push(this.tasks[i])
             this.tasks.splice(i, 1);
+        },
+        toggleDoneTask(i) {
+            if (this.tasks[i].done === false) {
+                this.tasks[i].done = true
+            } else {
+                this.tasks[i].done = false
+            }
         }
     },
     mounted() { },
