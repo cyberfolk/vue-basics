@@ -37,7 +37,8 @@
 
                     <div class="tasks">
                         <ul v-if="tasks.length > 0">
-                            <li @click="completeTask(index)" v-for="(task, index) in tasks" :class="{completed : task.done}">
+                            <li v-for="(task, index) in tasks" :class="{completed : task.done}">
+                                <button @click="completeTask(index)">x</button>
                                 {{task.text}}
                             </li>
                         </ul>
