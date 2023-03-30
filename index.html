@@ -17,51 +17,58 @@
     <body>
         <div id="app">
             <header>
-                <div class="container pt-3">
-                    <h1>TODO List</h1>
+                <div class="container pt-4">
+                    <h1 class="text-center">VU3 List</h1>
                 </div>
                 <!-- /.container -->
             </header>
 
             <main>
-                <div class="container">
+                <div class="container pt-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h2>TODO List</h2>
+                            <div class="input-group add_task">
+                                <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()" placeholder="Aggiungi nuova Task" class="form-control ps-2">
+                                <button class="input-group-text" @click="addTask()">Add</button>
+                            </div>
+                            <div class="alert alert-danger" role="alert" v-if="error">
+                                <strong>{{error}}</strong>
+                            </div>
+                            <!-- /.add_task -->
 
-                    <div class="input-group add_task">
-                        <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()" placeholder="Aggiungi nuova Task" class="form-control ps-2">
-                        <button class="input-group-text" @click="addTask()">Add</button>
-                    </div>
-                    <div class="alert alert-danger" role="alert" v-if="error">
-                        <strong>{{error}}</strong>
-                    </div>
-                    <!-- /.add_task -->
+                            <div class="tasks">
+                                <ul v-if="tasks.length > 0" class="list-group mt-3">
+                                    <li v-for="(task, index) in tasks" :class="{completed : task.done}" class="list-group-item">
+                                        <button @click="completeTask(index)" class="me-3 bg-body border-0">
+                                            <i class="fa-solid fa-square-xmark fa-fw"></i>
+                                        </button>
+                                        <span @click="toggleDoneTask(index)" role="button">{{task.text}}</span>
+                                    </li>
+                                </ul>
 
-                    <div class="tasks">
-                        <ul v-if="tasks.length > 0" class="list-group mt-3">
-                            <li v-for="(task, index) in tasks" :class="{completed : task.done}" class="list-group-item">
-                                <button @click="completeTask(index)" class="me-3 bg-body border-0">
-                                    <i class="fa-solid fa-square-xmark fa-fw"></i>
-                                </button>
-                                <span @click="toggleDoneTask(index)" role="button">{{task.text}}</span>
-                            </li>
-                        </ul>
-
-                        <div class=" alert alert-success " role=" alert" v-else>
-                            <strong>Hai completato le robe</strong>
+                                <div class=" alert alert-success " role=" alert" v-else>
+                                    <strong>Hai completato le robe</strong>
+                                </div>
+                            </div>
+                            <!-- /.tasks -->
                         </div>
-                    </div>
-                    <!-- /.tasks -->
-
-
-                    <div class="completedTask mt-3">
-                        <h2>Completed Task</h2>
-                        <ul v-if="completedTask.length > 0" class="list-group">
-                            <li v-for="(task, index) in completedTask" class="list-group-item">{{task.text}}</li>
-                        </ul>
-                        <div class="alert alert-danger " role="alert" v-else>
-                            <strong>Al momento non hai completato nessuna Task</strong>
+                        <!-- /.col-12 -->
+                        <div class="col-12 col-lg-6">
+                            <div class="completedTask mt-3 mt-lg-0">
+                                <h2>Completed Task</h2>
+                                <ul v-if="completedTask.length > 0" class="list-group">
+                                    <li v-for="(task, index) in completedTask" class="list-group-item">{{task.text}}</li>
+                                </ul>
+                                <div class="alert alert-danger " role="alert" v-else>
+                                    <strong>Al momento non hai completato nessuna Task</strong>
+                                </div>
+                            </div>
+                            <!-- /.completedTask -->
                         </div>
+                        <!-- /.col-12 -->
                     </div>
-                    <!-- /.completedTask -->
+                    <!-- /.row -->
 
                 </div>
                 <!-- /.container -->
