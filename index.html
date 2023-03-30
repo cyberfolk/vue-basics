@@ -27,7 +27,7 @@
                 <div class="container">
 
                     <div class="add_task">
-                        <input type="text" v-model.trim="newTodoTask">
+                        <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()">
                         <button @click="addTask()">Add</button>
                         <div class="alert alert-danger" role="alert" v-if="error">
                             <strong>{{error}}</strong>
