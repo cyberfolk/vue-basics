@@ -1,8 +1,8 @@
 /**
  * DESCRIZIONE:
  * Rifare l'esercizio della to do list. Questa volta però ogni todo sarà un oggetto, formato da due proprietà:
- * text, una stringa che indica il testo del todo
- * done, un booleano (true/false) che indica se il todo è stato fatto oppure no
+ *  - text, una stringa che indica il testo del todo
+ *  - done, un booleano (true/false) che indica se il todo è stato fatto oppure no
  * MILESTONE 1
  * Stampare all'interno di una lista HTML un item per ogni todo. Se la proprietà done è uguale a true, visualizzare il testo del todo sbarrato.
  * MILESTONE 2
@@ -15,6 +15,7 @@
  */
 
 import { tasks } from "./db.js"; // import of a default export
+import { Task } from "./Models/Task.js"; // import of a default export
 
 const { createApp } = Vue
 
@@ -30,8 +31,8 @@ createApp({
     methods: {
         addTask() {
             if (this.newTodoTask.length > 3) {
-                newTask = new (newTodoTask, false)
-                this.tasks.unshift(this.newTodoTask);
+                const newTask = new Task(this.newTodoTask, false)
+                this.tasks.unshift(newTask);
                 this.newTodoTask = "";
                 this.error = null;
             } else {
