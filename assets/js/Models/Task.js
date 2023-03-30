@@ -5,10 +5,10 @@ export class Task {
   /**
    * Image Contructor
    * @param {String} text The text of the task src
-   * @param {boolean} todo 
+   * @param {boolean} done if true the task is completed
    */
-  constructor(text, todo) {
+  constructor(text, done) {
     this.text = text
-    this.todo = todo
+    this.done = done
   }
 }

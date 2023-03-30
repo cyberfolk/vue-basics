@@ -21,7 +21,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            completed: [],
+            completedTask: [],
             error: null,
             newTodoTask: "",
             tasks: tasks,
@@ -39,7 +39,7 @@ createApp({
             }
         },
         completeTask(i) {
-            this.completed.push(this.tasks[i])
+            this.completedTask.push(this.tasks[i])
             this.tasks.splice(i, 1);
         }
     },

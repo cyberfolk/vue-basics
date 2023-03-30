@@ -37,7 +37,9 @@
 
                     <div class="tasks">
                         <ul v-if="tasks.length > 0">
-                            <li @click="completeTask(index)" v-for="(task, index) in tasks">{{task.text}}</li>
+                            <li @click="completeTask(index)" v-for="(task, index) in tasks" :class="{completed : task.done}">
+                                {{task.text}}
+                            </li>
                         </ul>
 
                         <div class="alert alert-success " role="alert" v-else>
@@ -47,16 +49,16 @@
                     <!-- /.tasks -->
 
 
-                    <div class="completed">
+                    <div class="completedTask">
                         <h2>Completed Task</h2>
-                        <ul v-if="completed.length > 0">
-                            <li v-for="(task, index) in completed">{{task.text}}</li>
+                        <ul v-if="completedTask.length > 0">
+                            <li v-for="(task, index) in completedTask">{{task.text}}</li>
                         </ul>
                         <div class="alert alert-danger " role="alert" v-else>
                             <strong>Male, non ne hai completata nessuna</strong>
                         </div>
                     </div>
-                    <!-- /.completed -->
+                    <!-- /.completedTask -->
 
                 </div>
                 <!-- /.container -->
