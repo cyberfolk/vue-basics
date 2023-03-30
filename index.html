@@ -27,20 +27,19 @@
                 <div class="container">
 
                     <div class="add_task">
-                        <input type="text" v-model.trim="newTask">
+                        <input type="text" v-model.trim="newTodoTask">
                         <button @click="addTask()">Add</button>
                         <div class="alert alert-danger" role="alert" v-if="error">
                             <strong>{{error}}</strong>
                         </div>
-
-
                     </div>
                     <!-- /.add_task -->
 
                     <div class="tasks">
                         <ul v-if="tasks.length > 0">
-                            <li @click="completeTask(index)" v-for="(task, index) in tasks">{{task}}</li>
+                            <li @click="completeTask(index)" v-for="(task, index) in tasks">{{task.text}}</li>
                         </ul>
+
                         <div class="alert alert-success " role="alert" v-else>
                             <strong>Bravo hai completato le robe</strong>
                         </div>
@@ -51,7 +50,7 @@
                     <div class="completed">
                         <h2>Completed Task</h2>
                         <ul v-if="completed.length > 0">
-                            <li v-for="(task, index) in completed">{{task}}</li>
+                            <li v-for="(task, index) in completed">{{task.text}}</li>
                         </ul>
                         <div class="alert alert-danger " role="alert" v-else>
                             <strong>Male, non ne hai completata nessuna</strong>

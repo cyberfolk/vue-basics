@@ -14,6 +14,8 @@
  * cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
  */
 
+import { tasks } from "./db.js"; // import of a default export
+
 const { createApp } = Vue
 
 createApp({
@@ -21,33 +23,24 @@ createApp({
         return {
             completed: [],
             error: null,
-            newTask: "",
-            tasks: [
-                'Learn HTML',
-                'Learn CSS',
-                'Learn JS',
-            ],
+            newTodoTask: "",
+            tasks: tasks,
         }
     },
     methods: {
         addTask() {
-            if (this.newTask.length > 3) {
-                this.tasks.unshift(this.newTask);
-                this.newTask = "";
+            if (this.newTodoTask.length > 3) {
+                newTask = new (newTodoTask, false)
+                this.tasks.unshift(this.newTodoTask);
+                this.newTodoTask = "";
                 this.error = null;
             } else {
                 this.error = "Non puoi inserire sta roba, c'ha meno di 5 caratteri."
             }
         },
-        markTask(index) {
-            console.log(index.target)
-            //index.target.style.textDecoration = "line-through"
-            index.target.remove()
-        },
         completeTask(i) {
             this.completed.push(this.tasks[i])
             this.tasks.splice(i, 1);
-
         }
     },
     mounted() { },
