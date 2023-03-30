@@ -36,7 +36,7 @@ createApp({
                 this.newTodoTask = "";
                 this.error = null;
             } else {
-                this.error = "Non puoi inserire sta roba, c'ha meno di 5 caratteri."
+                this.error = "Non puoi inserire task con meno di 5 caratteri."
             }
         },
         completeTask(i) {
