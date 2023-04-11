@@ -15,8 +15,11 @@
     <body>
         <div id="app">
             <div class="container">
-                <h1>vue-email-list</h1>
-                <ul>
+                <h1>Vue-email-list</h1>
+
+
+                <button class="btn btn-primary" @click="getEmails()"> Mostra le 10 Email</button>
+                <ul v-if="thereAreAllEmais()">
                     <li v-for="email in emails">{{email}}</li>
                 </ul>
 

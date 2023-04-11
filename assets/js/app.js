@@ -27,11 +27,13 @@ createApp({
                     }).catch(error => { console.error(error.message) })
             }
         },
+        thereAreAllEmais() {
+            if (this.emails.length == N_MAIL) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     },
-    mounted() {
-        this.getEmails();
-    }
-
-
 
 }).mount('#app')
