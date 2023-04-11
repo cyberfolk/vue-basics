@@ -6,7 +6,6 @@
  * Far comparire gli indirizzi email solamente quando sono stati tutti generati.
  */
 
-const N_MAIL = 10;
 const { createApp } = Vue
 
 createApp({
@@ -20,26 +19,35 @@ createApp({
             min: 0,
             max: 0,
             items: 0,
+            loading: false,
+            areAllEmais: false,
+            N_MAILS: 20,
         }
     },
     methods: {
         getEmails() {
-            this.emails = [];
-            for (let i = 0; i < N_MAIL; i++) {
+            this.resetParamEmails();
+            for (let i = 0; i < this.N_MAILS; i++) {
                 axios
                     .get(this.urlEmail)
                     .then(response => {
                         const email = response.data.response
                         this.emails.push(email);
+                        this.isTheLastEmail()
                     }).catch(error => { console.error(error.message) })
             }
         },
 
-        thereAreAllEmais() {
-            if (this.emails.length == N_MAIL) {
-                return true;
-            } else {
-                return false;
+        resetParamEmails() {
+            this.loading = true;
+            this.areAllEmais = false
+            this.emails = [];
+        },
+
+        isTheLastEmail() {
+            if (this.emails.length === this.N_MAILS) {
+                this.loading = false;
+                this.areAllEmais = true
             }
         },
 
