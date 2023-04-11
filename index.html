@@ -20,12 +20,19 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="api_emails">
+
                             <h2>Visualizza {{N_MAILS}} mail</h2>
                             <button class="btn btn-primary my-2" @click="getEmails()"> Mostra</button>
                             <div v-if="loading" class="ps-3"><i class="fs-2 fa-solid fa-spinner fa-spin"></i></div>
-                            <ul v-if="thereAreAllEmails()">
-                                <li v-for="email in emails">{{email}}</li>
-                            </ul>
+
+                            <div v-if="thereAreAllEmails()">
+                                <div>Tempo impiegato {{elapsedTime_toSecond()}} secondi</div>
+                                <ul>
+                                    <li v-for="email in emails">{{email}}</li>
+                                </ul>
+                            </div>
+
+                            <!-- /.emails -->
                         </div>
                         <!-- /.api_emails -->
                     </div>

@@ -21,6 +21,7 @@ createApp({
             items: 0,
             loading: false,
             N_MAILS: 20,
+            elapsedTime: 0,
         }
     },
     methods: {
@@ -39,14 +40,20 @@ createApp({
         resetParamEmails() {
             this.loading = true;
             this.emails = [];
+            this.elapsedTime = performance.now();
         },
 
         thereAreAllEmails() {
             const allEmails = this.emails.length === this.N_MAILS;
             if (allEmails) {
                 this.loading = false;
+                this.elapsedTime = performance.now() - this.elapsedTime;
             }
             return allEmails
+        },
+
+        elapsedTime_toSecond() {
+            return (this.elapsedTime / 1000).toFixed(2)
         },
 
         getNumbers(min, max, items) {
@@ -63,6 +70,7 @@ createApp({
                     this.numbersError = true;
                 })
         }
+
     },
 
 }).mount('#app')
