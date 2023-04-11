@@ -12,27 +12,44 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            url: "https://flynn.boolean.careers/exercises/api/random/mail",
+            urlEmail: "https://flynn.boolean.careers/exercises/api/random/mail",
             emails: [],
+            numbers: [],
+            min: 0,
+            max: 0,
+            items: 0,
         }
     },
     methods: {
         getEmails() {
             for (let i = 0; i < N_MAIL; i++) {
                 axios
-                    .get(this.url)
+                    .get(this.urlEmail)
                     .then(response => {
                         const email = response.data.response
                         this.emails.push(email);
                     }).catch(error => { console.error(error.message) })
             }
         },
+
         thereAreAllEmais() {
             if (this.emails.length == N_MAIL) {
                 return true;
             } else {
                 return false;
             }
+        },
+
+        getNumbers(min, max, items) {
+            const urlNumbers = `https://flynn.boolean.careers/exercises/api/array/integers?min=${min}&max=${max}&items=${items}`
+            axios
+                .get(urlNumbers)
+                .then(response => {
+                    this.numbers = response.data.response
+                }).catch(error => {
+                    console.error(error.message)
+                    this.numbers = error.message
+                })
         }
     },
 
