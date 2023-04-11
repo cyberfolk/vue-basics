@@ -15,11 +15,12 @@
     <body>
         <div id="app">
             <div class="container">
-                <h1>Vue-email-list</h1>
+                <h1 class="text-center my-3 bg-dark text-light p-1">Vue-api-axios</h1>
 
                 <div class="row">
                     <div class="col-4">
                         <div class="api_emails">
+                            <h2>Visualizza 10 mail</h2>
                             <button class="btn btn-primary" @click="getEmails()"> Mostra le 10 Email</button>
                             <ul v-if="thereAreAllEmais()">
                                 <li v-for="email in emails">{{email}}</li>
@@ -31,6 +32,7 @@
 
                     <div class="col-4">
                         <div class="api_numbers">
+                            <h2>Visualizza array di numeri</h2>
                             <div class="input-group">
                                 <label class="input-group-text" style="width: 90px;">Minimo</label>
                                 <input class="form-control" type="number" v-model="min">
@@ -43,7 +45,7 @@
                                 <label class="input-group-text" style="width: 90px;">Quantità</label>
                                 <input class="form-control" type="number" v-model="items">
                             </div>
-                            <button class="btn btn-primary my-1" @click="getNumbers(min,max,items)"> Mostra le 10 Email</button>
+                            <button class="btn btn-primary my-1" @click="getNumbers(min,max,items)"> Visualizza i numeri</button>
                             <div class="alert alert-danger" role="alert" v-if="numbersError">
                                 <strong>{{numbersErrorMex}}</strong>
                             </div>
