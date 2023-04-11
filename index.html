@@ -22,8 +22,8 @@
                         <div class="api_emails">
                             <h2>Visualizza {{N_MAILS}} mail</h2>
                             <button class="btn btn-primary my-2" @click="getEmails()"> Mostra</button>
-                            <div><i v-if="loading" class="fs-2 fa-solid fa-spinner fa-spin"></i></div>
-                            <ul v-if="areAllEmais">
+                            <div v-if="loading" class="ps-3"><i class="fs-2 fa-solid fa-spinner fa-spin"></i></div>
+                            <ul v-if="thereAreAllEmails()">
                                 <li v-for="email in emails">{{email}}</li>
                             </ul>
                         </div>

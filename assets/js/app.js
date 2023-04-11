@@ -20,7 +20,6 @@ createApp({
             max: 0,
             items: 0,
             loading: false,
-            areAllEmais: false,
             N_MAILS: 20,
         }
     },
@@ -33,22 +32,21 @@ createApp({
                     .then(response => {
                         const email = response.data.response
                         this.emails.push(email);
-                        this.isTheLastEmail()
                     }).catch(error => { console.error(error.message) })
             }
         },
 
         resetParamEmails() {
             this.loading = true;
-            this.areAllEmais = false
             this.emails = [];
         },
 
-        isTheLastEmail() {
-            if (this.emails.length === this.N_MAILS) {
+        thereAreAllEmails() {
+            const allEmails = this.emails.length === this.N_MAILS;
+            if (allEmails) {
                 this.loading = false;
-                this.areAllEmais = true
             }
+            return allEmails
         },
 
         getNumbers(min, max, items) {
