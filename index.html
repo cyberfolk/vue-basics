@@ -18,7 +18,7 @@
                 <h1>Vue-email-list</h1>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="api_emails">
                             <button class="btn btn-primary" @click="getEmails()"> Mostra le 10 Email</button>
                             <ul v-if="thereAreAllEmais()">
@@ -27,21 +27,32 @@
                         </div>
                         <!-- /.api_emails -->
                     </div>
-                    <!-- /.col-6 -->
+                    <!-- /.col-4 -->
 
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="api_numbers">
                             <div class="input-group">
-                                <input class="" type="number" placeholder="minimo" v-model="min">
-                                <input type="number" placeholder="massimo" v-model="max">
-                                <input type="number" placeholder="quanti numeri?" v-model="items">
+                                <label class="input-group-text" style="width: 90px;">Minimo</label>
+                                <input class="form-control" type="number" v-model="min">
                             </div>
-                            <button class="btn btn-primary" @click="getNumbers(min,max,items)"> Mostra le 10 Email</button>
-                            <div v-if="numbers.length>0">{{numbers}}</div>
+                            <div class="input-group">
+                                <label class="input-group-text" style="width: 90px;">Massimo</label>
+                                <input class="form-control" type="number" v-model="max">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-group-text" style="width: 90px;">Quantità</label>
+                                <input class="form-control" type="number" v-model="items">
+                            </div>
+                            <button class="btn btn-primary my-1" @click="getNumbers(min,max,items)"> Mostra le 10 Email</button>
+                            <div class="alert alert-danger" role="alert" v-if="numbersError">
+                                <strong>{{numbersErrorMex}}</strong>
+                            </div>
+                            <div v-else v-if="numbers.length > 0">{{numbers}}</div>
+
                         </div>
                         <!-- /.api_numbers -->
                     </div>
-                    <!-- /.col-6 -->
+                    <!-- /.col-4 -->
                 </div>
                 <!-- /.row -->
 

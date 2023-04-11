@@ -15,6 +15,8 @@ createApp({
             urlEmail: "https://flynn.boolean.careers/exercises/api/random/mail",
             emails: [],
             numbers: [],
+            numbersError: false,
+            numbersErrorMex: "",
             min: 0,
             max: 0,
             items: 0,
@@ -22,6 +24,7 @@ createApp({
     },
     methods: {
         getEmails() {
+            this.emails = [];
             for (let i = 0; i < N_MAIL; i++) {
                 axios
                     .get(this.urlEmail)
@@ -45,10 +48,13 @@ createApp({
             axios
                 .get(urlNumbers)
                 .then(response => {
-                    this.numbers = response.data.response
+                    this.numbers = response.data.response;
+                    this.numbersError = false;
+                    this.numbersErrorMex = "";
                 }).catch(error => {
-                    console.error(error.message)
-                    this.numbers = error.message
+                    console.error(error.message);
+                    this.numbersErrorMex = error.message;
+                    this.numbersError = true;
                 })
         }
     },
