@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- font-awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- my style css -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <!-- bootstrap css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- font-awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>TODO-List</title>
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <div class="container pt-4">
+                    <h1 class="text-center">VU3 List</h1>
+                </div>
+                <!-- /.container -->
+            </header>
+
+            <main>
+                <div class="container pt-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h2>TODO List</h2>
+                            <div class="input-group add_task">
+                                <input type="text" v-model.trim="newTodoTask" @keyup.enter="addTask()" placeholder="Aggiungi nuova Task" class="form-control ps-2">
+                                <button class="input-group-text" @click="addTask()">Add</button>
+                            </div>
+                            <div class="alert alert-danger" role="alert" v-if="error">
+                                <strong>{{error}}</strong>
+                            </div>
+                            <!-- /.add_task -->
+
+                            <div class="tasks">
+                                <ul v-if="tasks.length > 0" class="list-group mt-3">
+                                    <li v-for="(task, index) in tasks" :class="{completed : task.done}" class="list-group-item">
+                                        <button @click="completeTask(index)" class="me-3 bg-body border-0">
+                                            <i class="fa-solid fa-square-xmark fa-fw"></i>
+                                        </button>
+                                        <span @click="toggleDoneTask(index)" role="button">{{task.text}}</span>
+                                    </li>
+                                </ul>
+
+                                <div class=" alert alert-success " role=" alert" v-else>
+                                    <strong>Hai completato le robe</strong>
+                                </div>
+                            </div>
+                            <!-- /.tasks -->
+                        </div>
+                        <!-- /.col-12 -->
+                        <div class="col-12 col-lg-6">
+                            <div class="completedTask mt-3 mt-lg-0">
+                                <h2>Completed Task</h2>
+                                <ul v-if="completedTask.length > 0" class="list-group">
+                                    <li v-for="(task, index) in completedTask" class="list-group-item">{{task.text}}</li>
+                                </ul>
+                                <div class="alert alert-danger " role="alert" v-else>
+                                    <strong>Al momento non hai completato nessuna Task</strong>
+                                </div>
+                            </div>
+                            <!-- /.completedTask -->
+                        </div>
+                        <!-- /.col-12 -->
+                    </div>
+                    <!-- /.row -->
+
+                </div>
+                <!-- /.container -->
+            </main>
+
+            <footer></footer>
+        </div>
+        <!-- /#app -->
+
+        <!-- Bootstrap javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <!-- vue.js -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <!-- javascript -->
+        <script src="./assets/js/app.js" type="module"></script>
+    </body>
+</html>

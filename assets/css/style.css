@@ -1,0 +1,8 @@
+.debug * {
+    border: 1px dashed red;
+}
+
+.completed {
+    text-decoration: line-through !important;
+    text-decoration-color: red !important;
+}
